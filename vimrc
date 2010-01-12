@@ -1,3 +1,6 @@
+"Behave somewhat like windows app.
+source $VIMRUNTIME/mswin.vim
+
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -5,25 +8,27 @@ set nocompatible
 "allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
+"arrow or motion over line breaks
+set whichwrap=<,>,h,l,[,] 
+
 "store lots of :cmdline history
 set history=1000
 
 set showcmd     "show incomplete cmds down the bottom
 set showmode    "show current mode down the bottom
 
+set ignorecase  "case insensitive search
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
 set nowrap      "dont wrap lines
 set linebreak   "wrap lines at convenient points
+set number      "line numbers
+
+set guioptions+=b       "show bottom scrollbar
 
 "statusline setup
 set statusline=%f       "tail of the filename
-
-"display a warning if fileformat isnt unix
-set statusline+=%#warningmsg#
-set statusline+=%{&ff!='unix'?'['.&ff.']':''}
-set statusline+=%*
 
 "display a warning if file encoding isnt utf-8
 set statusline+=%#warningmsg#
@@ -43,10 +48,6 @@ set statusline+=%*
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 
 set statusline+=%{StatuslineLongLineWarning()}
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 "display a warning if &paste is set
 set statusline+=%#error#
@@ -168,8 +169,8 @@ function! s:Median(nums)
 endfunction
 
 "indent settings
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set autoindent
 
@@ -207,28 +208,37 @@ set ttymouse=xterm2
 "hide buffers when not displayed
 set hidden
 
+colorscheme vividchalk
+
 if has("gui_running")
-		"tell the term has 256 colors
-		set t_Co=256
+    "tell the term has 256 colors
+    set t_Co=256
 
     if has("gui_gnome")
         set term=gnome-256color
-        colorscheme desert
     else
-        colorscheme vibrantink
         set guitablabel=%M%t
         set lines=40
         set columns=115
     endif
     if has("gui_mac") || has("gui_macvim")
-        set guifont=Menlo:h15
+        set guifont=Monaco:h16
     endif
     if has("gui_win32") || has("gui_win32s")
         set guifont=Consolas:h12
-				set enc=utf-8
+        set enc=utf-8
+    else
+        "display a warning if fileformat isnt unix
+        set statusline+=%#warningmsg#
+        set statusline+=%{&ff!='unix'?'['.&ff.']':''}
+        set statusline+=%*
+
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
     endif
 else
-		"dont load csapprox if we no gui support - silences an annoying warning
+    "dont load csapprox if we no gui support - silences an annoying warning
     let g:CSApprox_loaded = 1
 endif
 
@@ -287,3 +297,73 @@ function! s:HighlightLongLines(width)
         echomsg "Usage: HighlightLongLines [natural number]"
     endif
 endfunction
+
+au BufNewFile,BufRead *.txt setfiletype txt
+
+let mapleader = ","
+let g:fuzzy_matching_limit = 70
+let g:fuzzy_ignore = "*.svg;*.ttf;*.psd;*.png;*.jpg;*.gif;*.dll"
+
+" Insert current date.
+iab <expr> ddate strftime("%m/%d/%Y")
+iab <expr> sdate strftime("*%m/%d/%Y*")
+iab d: Done: 
+
+" Indent visual block
+" The tab version throws errors on startup
+vnoremap > >gv
+vnoremap < <gv
+
+" A common mistake when I really want <C-K>.
+nmap K <ESC>
+
+map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>fuf :FuzzyFinderBuffer<CR>
+map <leader>rc :FuzzyFinderRemoveCache<CR>
+map <leader>d :NERDTreeToggle<cr>
+map <leader>ncd :NERDTree<cr>
+nmap <silent> <Leader>cd :cd %:p:h<CR>
+
+" Switch to last buffer
+nnoremap <C-Tab> :b#<CR>
+inoremap <C-Tab> <Esc>:b#<CR>
+
+" Use motions to move between windows.
+nnoremap <C-h> <C-w><Left>
+inoremap <C-h> <Esc><C-w><Left>
+" <c-l> will also clear highlights.
+nnoremap <C-l> :nohls<CR><ESC><C-w><Right>
+inoremap <C-l> <C-O>:nohls<CR><Esc><C-w><Right>
+inoremap <C-k> <Esc><C-w><Up>
+nnoremap <C-k> <C-w><Up>
+nnoremap <C-j> <C-w><Down>
+inoremap <C-j> <Esc><C-w><Down>
+
+" Scroll rather than the default PageUp and PageDown.
+nnoremap <silent> <PageUp> <C-U><C-U>
+vnoremap <silent> <PageUp> <C-U><C-U>
+inoremap <silent> <PageUp> <C-\><C-O><C-U><C-\><C-O><C-U>
+nnoremap <silent> <PageDown> <C-D><C-D>
+vnoremap <silent> <PageDown> <C-D><C-D>
+inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
+
+" Switch between tabs left and right.
+map <C-A-Right> :tabn<CR>
+vmap <C-A-Right> <Esc>:tabn<CR>
+imap <C-A-Right> <Esc>:tabn<CR>
+map <C-A-Left> :tabp<CR>
+vmap <C-A-Left> <Esc>:tabp<CR>
+imap <C-A-Left> <Esc>:tabp<CR>
+
+"set diffexpr=MyDiff()
+" Expand or shrink window.
+if bufwinnr(1)
+  map + <C-W>+
+  map _ <C-W>-
+endif
+
+" Auto close braces.
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
