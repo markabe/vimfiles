@@ -215,7 +215,7 @@ if has("gui_running")
     set t_Co=256
 
     if has("gui_gnome")
-        set term=gnome-256color
+        set guifont=DejaVu\ Sans\ Mono\ bold\ 11
     else
         set guitablabel=%M%t
         set lines=40
