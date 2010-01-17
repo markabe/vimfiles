@@ -16,6 +16,7 @@ syn match txtQuestion /?.*/
 syn match txtDependency /\[.*]/
 syn match txtPositive /+\w.*/
 syn match txtNegative /$.*/
+syn match txtDone /-Done:.*/
 
 hi def link txtTitle Identifier
 hi def link txtSection String
@@ -24,5 +25,6 @@ hi def link txtQuestion Preproc
 hi def link txtDependency Keyword
 hi def link txtPositive Special
 hi def link txtNegative Exception
+hi def link txtDone Type
 
 let b:current_syntax="txt"
