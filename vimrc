@@ -208,11 +208,10 @@ set ttymouse=xterm2
 "hide buffers when not displayed
 set hidden
 
-colorscheme vividchalk
-
 if has("gui_running")
     "tell the term has 256 colors
     set t_Co=256
+    colorscheme vividchalk
 
     if has("gui_gnome")
         set guifont=DejaVu\ Sans\ Mono\ bold\ 11
@@ -238,6 +237,7 @@ if has("gui_running")
         set statusline+=%*
     endif
 else
+    colorscheme vibrantink
     "dont load csapprox if we no gui support - silences an annoying warning
     let g:CSApprox_loaded = 1
 endif
