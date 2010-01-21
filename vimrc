@@ -322,6 +322,7 @@ map <leader>fuf :FuzzyFinderBuffer<CR>
 map <leader>rc :FuzzyFinderRemoveCache<CR>
 map <leader>d :NERDTreeToggle<cr>
 map <leader>ncd :NERDTree<cr>
+map <leader>txt :set syntax=txt<cr>
 nmap <silent> <Leader>cd :cd %:p:h<CR>
 
 " Switch to last buffer

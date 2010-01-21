@@ -17,6 +17,7 @@ syn match txtDependency /\[.*]/
 syn match txtPositive /+\w.*/
 syn match txtNegative /$.*/
 syn match txtDone /-Done:.*/
+syn match txtBookmark /^\s*\*[^\*]*$/
 
 hi def link txtTitle Identifier
 hi def link txtSection String
@@ -26,5 +27,6 @@ hi def link txtDependency Keyword
 hi def link txtPositive Special
 hi def link txtNegative Exception
 hi def link txtDone Type
+hi def link txtBookmark Error
 
 let b:current_syntax="txt"
