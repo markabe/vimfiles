@@ -254,6 +254,9 @@ nnoremap <C-B> :BufExplorer<cr>
 "map to fuzzy finder text mate stylez
 nnoremap <c-f> :FuzzyFinderTextMate<CR>
 
+"Stealing <c-t> for new tab. Use <c-o> to backtrack tags instead.
+nnoremap <c-t> :tabnew<CR>
+
 "map Q to something useful
 noremap Q gq
 
@@ -303,6 +306,7 @@ au BufNewFile,BufRead *.txt setfiletype txt
 let mapleader = ","
 let g:fuzzy_matching_limit = 70
 let g:fuzzy_ignore = "*.svg;*.ttf;*.psd;*.png;*.jpg;*.gif;*.dll"
+let Tlist_GainFocus_On_ToggleOpen = 1
 
 " Insert current date.
 iab <expr> ddate strftime("%m/%d/%Y")
@@ -318,6 +322,8 @@ vnoremap < <gv
 nmap K <ESC>
 
 map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>tt :FuzzyFinderTextMate<CR>
+map <leader>tl :TlistToggle<CR>
 map <leader>fuf :FuzzyFinderBuffer<CR>
 map <leader>rc :FuzzyFinderRemoveCache<CR>
 map <leader>d :NERDTreeToggle<cr>
