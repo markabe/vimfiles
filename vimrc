@@ -237,12 +237,10 @@ if has("gui_running")
         set statusline+=%*
     endif
 else
-    colorscheme vibrantink
+    "colorscheme vibrantink
     "dont load csapprox if we no gui support - silences an annoying warning
     let g:CSApprox_loaded = 1
 endif
-
-nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 "make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
@@ -321,14 +319,14 @@ vnoremap < <gv
 " A common mistake when I really want <C-K>.
 nmap K <ESC>
 
-map <leader>t :FuzzyFinderTextMate<CR>
-map <leader>tt :FuzzyFinderTextMate<CR>
-map <leader>tl :TlistToggle<CR>
-map <leader>fuf :FuzzyFinderBuffer<CR>
-map <leader>rc :FuzzyFinderRemoveCache<CR>
-map <leader>d :NERDTreeToggle<cr>
-map <leader>ncd :NERDTree<cr>
-map <leader>txt :set syntax=txt<cr>
+map <silent> <leader>t :FuzzyFinderTextMate<CR>
+map <silent> <leader>tt :FuzzyFinderTextMate<CR>
+map <silent> <leader>tl :TlistToggle<CR>
+map <silent> <leader>fuf :FuzzyFinderBuffer<CR>
+map <silent> <leader>rc :FuzzyFinderRemoveCache<CR>
+map <silent> <leader>d :NERDTreeToggle<cr>
+map <silent> <leader>ncd :NERDTree<cr>
+map <silent> <leader>txt :set syntax=txt<cr>
 nmap <silent> <Leader>cd :cd %:p:h<CR>
 
 " Switch to last buffer
