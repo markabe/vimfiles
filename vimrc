@@ -252,8 +252,11 @@ nnoremap <C-B> :BufExplorer<cr>
 "map to fuzzy finder text mate stylez
 nnoremap <c-f> :FuzzyFinderTextMate<CR>
 
-"Stealing <c-t> for new tab. Use <c-o> to backtrack tags instead.
-nnoremap <c-t> :tabnew<CR>
+"new tab
+map t<CR> :tabnew<CR>
+
+"delete buffer
+map d<CR> :bd<CR>
 
 "map Q to something useful
 noremap Q gq
