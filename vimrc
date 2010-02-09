@@ -255,8 +255,8 @@ nnoremap <c-f> :FuzzyFinderTextMate<CR>
 "new tab
 map t<CR> :tabnew<CR>
 
-"delete buffer
-map d<CR> :bd<CR>
+"delete or 'kill' the buffer
+map K :bd<CR>
 
 "map Q to something useful
 noremap Q gq
@@ -362,6 +362,8 @@ imap <C-A-Right> <Esc>:tabn<CR>
 map <C-A-Left> :tabp<CR>
 vmap <C-A-Left> <Esc>:tabp<CR>
 imap <C-A-Left> <Esc>:tabp<CR>
+map L :tabn<CR>
+map H :tabp<CR>
 
 "set diffexpr=MyDiff()
 " Expand or shrink window.
