@@ -253,10 +253,10 @@ nnoremap <C-B> :BufExplorer<cr>
 nnoremap <c-f> :FuzzyFinderTextMate<CR>
 
 "new tab
-map t<CR> :tabnew<CR>
+nnoremap t<CR> :tabnew<CR>
 
 "delete or 'kill' the buffer
-map K :bd<CR>
+nnoremap K :bd<CR>
 
 "map Q to something useful
 noremap Q gq
@@ -318,9 +318,6 @@ iab d: Done:
 " The tab version throws errors on startup
 vnoremap > >gv
 vnoremap < <gv
-
-" A common mistake when I really want <C-K>.
-nmap K <ESC>
 
 map <silent> <leader>t :FuzzyFinderTextMate<CR>
 map <silent> <leader>tt :FuzzyFinderTextMate<CR>
