@@ -320,13 +320,9 @@ vnoremap > >gv
 vnoremap < <gv
 
 map <silent> <leader>t :FuzzyFinderTextMate<CR>
-map <silent> <leader>tt :FuzzyFinderTextMate<CR>
-map <silent> <leader>tl :TlistToggle<CR>
-map <silent> <leader>fuf :FuzzyFinderBuffer<CR>
-map <silent> <leader>rc :FuzzyFinderRemoveCache<CR>
+map <silent> <leader>k :TlistToggle<CR>
+map <silent> <leader>f :BufExplorerHorizontalSplit<CR>
 map <silent> <leader>d :NERDTreeToggle<cr>
-map <silent> <leader>ncd :NERDTree<cr>
-map <silent> <leader>txt :set syntax=txt<cr>
 nmap <silent> <Leader>cd :cd %:p:h<CR>
 
 " Switch to last buffer
