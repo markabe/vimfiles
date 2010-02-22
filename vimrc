@@ -47,8 +47,6 @@ set statusline+=%*
 
 set statusline+=%{StatuslineTrailingSpaceWarning()}
 
-set statusline+=%{StatuslineLongLineWarning()}
-
 "display a warning if &paste is set
 set statusline+=%#error#
 set statusline+=%{&paste?'[paste]':''}
