@@ -306,7 +306,7 @@ au BufNewFile,BufRead *.txt setfiletype txt
 
 let mapleader = ","
 let g:fuzzy_matching_limit = 70
-let g:fuzzy_ignore = "*.svg;*.ttf;*.psd;*.png;*.jpg;*.gif;*.dll"
+let g:fuzzy_ignore = "*.svg;*.ttf;*.psd;*.png;*.jpg;*.gif;*.exe;*.dll;*.vsmdi;*.pdb;*.pdf;*.lnk;*.sln;*.csproj;*.cache"
 let Tlist_GainFocus_On_ToggleOpen = 1
 
 " Insert current date.
