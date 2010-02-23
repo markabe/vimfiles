@@ -251,7 +251,7 @@ nnoremap <C-B> :BufExplorer<cr>
 nnoremap <c-f> :FuzzyFinderTextMate<CR>
 
 "new tab
-nnoremap t<CR> :tabnew<CR>
+nnoremap <C-t> :tabnew<CR>
 
 "delete or 'kill' the buffer
 nnoremap K :bd<CR>
