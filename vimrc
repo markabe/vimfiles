@@ -221,12 +221,6 @@ nnoremap <c-f> :FuzzyFinderTextMate<CR>
 "new tab
 nnoremap <C-t> :tabnew<CR>
 
-"delete or 'kill' the buffer
-nnoremap K :bd<CR>
-
-"map Q to something useful
-noremap Q gq
-
 "make Y consistent with C and D
 nnoremap Y y$
 
@@ -277,7 +271,6 @@ endfunction
 
 au BufNewFile,BufRead *.txt setfiletype txt
 
-let mapleader = ","
 let g:fuzzy_matching_limit = 70
 let g:fuzzy_ignore = "*.svg;*.ttf;*.psd;*.png;*.jpg;*.gif;*.exe;*.dll;*.vsmdi;*.pdb;*.pdf;*.lnk;*.sln;*.csproj;*.cache"
 let Tlist_GainFocus_On_ToggleOpen = 1
@@ -292,10 +285,13 @@ iab d: Done:
 vnoremap > >gv
 vnoremap < <gv
 
-map <silent> <leader>t :FuzzyFinderTextMate<CR>
-map <silent> <leader>k :TlistToggle<CR>
-map <silent> <leader>f :BufExplorerHorizontalSplit<CR>
+let mapleader = ","
 map <silent> <leader>d :NERDTreeToggle<cr>
+map <silent> <leader>f :FuzzyFinderTextMate<CR>
+map <silent> <leader>t :TlistToggle<CR>
+map <silent> <leader>b :BufExplorerHorizontalSplit<CR>
+map <silent> <leader>bb :BufExplorerHorizontalSplit<CR>
+map <silent> <leader>k :bd<CR>
 nmap <silent> <Leader>cd :cd %:p:h<CR>
 
 " Switch to last buffer
@@ -354,4 +350,5 @@ imap <C-@> <C-Space>
 
 " * Load external config
 runtime! custom/statusbar_config.vim
+runtime! taglist_config.vim
 runtime! custom/vimshell_config.vim
