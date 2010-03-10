@@ -99,9 +99,6 @@ inoremap <C-L> <C-O>:nohls<CR>
 "map to bufexplorer
 nnoremap <C-B> :BufExplorer<cr>
 
-"map to fuzzy finder text mate stylez
-nnoremap <c-f> :FuzzyFinderTextMate<CR>
-
 "new tab
 nnoremap <C-t> :tabnew<CR>
 
@@ -118,30 +115,6 @@ map! <F1> <Esc>
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 
-"visual search mappings
-function! s:VSetSearch()
-    let temp = @@
-    norm! gvy
-    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
-    let @@ = temp
-endfunction
-vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
-vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
-
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
-function! SetCursorPosition()
-    if &filetype !~ 'commit\c'
-        if line("'\"") > 0 && line("'\"") <= line("$")
-            exe "normal! g`\""
-            normal! zz
-        endif
-    end
-endfunction
-
-let g:fuzzy_matching_limit = 70
-let g:fuzzy_ignore = "*.svg;*.ttf;*.psd;*.png;*.jpg;*.gif;*.exe;*.dll;*.vsmdi;*.pdb;*.pdf;*.lnk;*.sln;*.csproj;*.cache"
 let Tlist_GainFocus_On_ToggleOpen = 1
 
 " Insert current date.
@@ -217,9 +190,32 @@ inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
 imap <C-@> <C-Space>
 
-au BufNewFile,BufRead *.txt setfiletype txt
+"visual search mappings
+function! s:VSetSearch()
+    let temp = @@
+    norm! gvy
+    let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+    let @@ = temp
+endfunction
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR>
+
+"jump to last cursor position when opening a file
+"dont do it when writing a commit log entry
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+    if &filetype !~ 'commit\c'
+        if line("'\"") > 0 && line("'\"") <= line("$")
+            exe "normal! g`\""
+            normal! zz
+        endif
+    end
+endfunction
 
 " * Load external config
+runtime! custom/fuzzy_finder_config.vim
 runtime! custom/statusbar_config.vim
 runtime! taglist_config.vim
 runtime! custom/vimshell_config.vim
+
+au BufNewFile,BufRead *.txt setfiletype txt
