@@ -4,7 +4,7 @@
   let g:VimShell_ExecuteFileList['pl'] = 'perl'
   let g:VimShell_ExecuteFileList['py'] = 'python'
  
-  let g:VimShell_EnableInteractive = 1
+  "let g:VimShell_EnableInteractive = 1
   let g:VimShell_EnableSmartCase = 1
   let g:VimShell_EnableAutoLs = 1
  
