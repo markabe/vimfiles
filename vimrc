@@ -354,3 +354,4 @@ imap <C-@> <C-Space>
 
 " * Load external config
 runtime! custom/statusbar_config.vim
+runtime! custom/vimshell_config.vim
