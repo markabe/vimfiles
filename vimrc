@@ -27,38 +27,6 @@ set number      "line numbers
 
 set guioptions+=b       "show bottom scrollbar
 
-"statusline setup
-set statusline=%f       "tail of the filename
-
-"display a warning if file encoding isnt utf-8
-set statusline+=%#warningmsg#
-set statusline+=%{(&fenc!='utf-8'&&&fenc!='')?'['.&fenc.']':''}
-set statusline+=%*
-
-set statusline+=%h      "help file flag
-set statusline+=%y      "filetype
-set statusline+=%r      "read only flag
-set statusline+=%m      "modified flag
-
-"display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
-set statusline+=%{StatuslineTabWarning()}
-set statusline+=%*
-
-set statusline+=%{StatuslineTrailingSpaceWarning()}
-
-"display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-
-set statusline+=%=      "left/right separator
-set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
-set laststatus=2
-
 "recalculate the trailing whitespace warning when idle, and after saving
 autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 
@@ -262,6 +230,13 @@ noremap Q gq
 "make Y consistent with C and D
 nnoremap Y y$
 
+" Quick, jump out of insert mode while no one is looking
+imap ii <Esc>
+
+" Remap F1 from Help to ESC.  No more accidents
+nmap <F1> <Esc>
+map! <F1> <Esc>
+
 "mark syntax errors with :signs
 let g:syntastic_enable_signs=1
 
@@ -376,3 +351,6 @@ inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
 \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
 imap <C-@> <C-Space>
+
+" * Load external config
+runtime! custom/statusbar_config.vim
