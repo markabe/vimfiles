@@ -28,8 +28,6 @@ set nowrap      "dont wrap lines
 set linebreak   "wrap lines at convenient points
 set number      "line numbers
 
-set guioptions+=b       "show bottom scrollbar
-
 "indent settings
 set shiftwidth=2
 set softtabstop=2
