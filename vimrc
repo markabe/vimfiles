@@ -68,30 +68,7 @@ set ttymouse=xterm2
 "hide buffers when not displayed
 set hidden
 
-if has("gui_running")
-    "tell the term has 256 colors
-    set t_Co=256
-    colorscheme vividchalk
-
-    if has("gui_gnome")
-        set guifont=DejaVu\ Sans\ Mono\ bold\ 11
-    else
-        set guitablabel=%M%t
-        set lines=40
-        set columns=115
-    endif
-    if has("gui_mac") || has("gui_macvim")
-        set guifont=Monaco:h16
-    endif
-    if has("gui_win32") || has("gui_win32s")
-        set guifont=Consolas:h12
-        set enc=utf-8
-    endif
-else
-    "colorscheme vibrantink
-    "dont load csapprox if we no gui support - silences an annoying warning
-    let g:CSApprox_loaded = 1
-endif
+let g:CSApprox_loaded = 1
 
 "make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
@@ -112,11 +89,6 @@ imap ii <Esc>
 " Remap F1 from Help to ESC.  No more accidents
 nmap <F1> <Esc>
 map! <F1> <Esc>
-
-"mark syntax errors with :signs
-let g:syntastic_enable_signs=1
-
-let Tlist_GainFocus_On_ToggleOpen = 1
 
 " Insert current date.
 iab <expr> ddate strftime("%m/%d/%Y")
@@ -161,14 +133,15 @@ vnoremap <silent> <PageDown> <C-D><C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
 
 " Switch between tabs left and right.
+map L :tabn<CR>
+map H :tabp<CR>
+" Alternte method.
 map <C-A-Right> :tabn<CR>
 vmap <C-A-Right> <Esc>:tabn<CR>
 imap <C-A-Right> <Esc>:tabn<CR>
 map <C-A-Left> :tabp<CR>
 vmap <C-A-Left> <Esc>:tabp<CR>
 imap <C-A-Left> <Esc>:tabp<CR>
-map L :tabn<CR>
-map H :tabp<CR>
 
 "set diffexpr=MyDiff()
 " Expand or shrink window.
@@ -216,7 +189,8 @@ endfunction
 " * Load external config
 runtime! custom/fuzzy_finder_config.vim
 runtime! custom/statusbar_config.vim
-runtime! taglist_config.vim
+runtime! custom/syntastic_config.vim
+runtime! custom/taglist_config.vim
 runtime! custom/vimshell_config.vim
 
 au BufNewFile,BufRead *.txt setfiletype txt
