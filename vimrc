@@ -21,6 +21,9 @@ set ignorecase  "case insensitive search
 set incsearch   "find the next match as we type the search
 set hlsearch    "hilight searches by default
 
+" assume the /g flag on :s substitutions to replace all matches in a line:
+set gdefault
+
 set nowrap      "dont wrap lines
 set linebreak   "wrap lines at convenient points
 set number      "line numbers
