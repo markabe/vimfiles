@@ -135,6 +135,8 @@ inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
 " Switch between tabs left and right.
 map L :tabn<CR>
 map H :tabp<CR>
+" Stop accidents.
+map K <Esc>
 " Alternte method.
 map <C-A-Right> :tabn<CR>
 vmap <C-A-Right> <Esc>:tabn<CR>
