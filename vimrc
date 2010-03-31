@@ -94,6 +94,7 @@ map! <F1> <Esc>
 iab <expr> ddate strftime("%m/%d/%Y")
 iab <expr> sdate strftime("*%m/%d/%Y*")
 iab d: Done: 
+iab s: Skip: 
 
 " Indent visual block
 " The tab version throws errors on startup
