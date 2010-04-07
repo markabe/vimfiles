@@ -10,11 +10,12 @@ elseif exists("b:current_syntax")
 endif
 
 syn match txtTitle /^++.*/
-syn match txtSection /^\*.*\*/
+syn match txtSection1 /^\*.*\*/
+syn match txtSection2 /\[.*]\n/
 syn match txtSubsection /^=.*/
 syn match txtComment /#.*/
 syn match txtQuestion /?.*/
-syn match txtDependency /\[.*]/
+syn match txtDependency /\[.*]\(\s\)/
 syn match txtPositive /+\w.*/
 syn match txtNegative /$.*/
 syn match txtDone /-Done:.*/
@@ -22,7 +23,8 @@ syn match txtSkip /-Skip:.*/
 syn match txtBookmark /^\s*\*[^\*]*$/
 
 hi def link txtTitle Identifier
-hi def link txtSection String
+hi def link txtSection1 String
+hi def link txtSection2 String
 hi def link txtSubsection Constant
 hi def link txtComment Comment
 hi def link txtQuestion Preproc
